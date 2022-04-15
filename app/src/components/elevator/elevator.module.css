@@ -1,0 +1,27 @@
+.elevator {
+  position: relative;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  border: 1px solid black;
+  width: 40px;
+  height: 50px;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10px;
+  width: 100%;
+  background: black;
+}
+
+.light {
+  width: 5px;
+  height: 5px;
+  background: green;
+  border-radius: 50%;
+}

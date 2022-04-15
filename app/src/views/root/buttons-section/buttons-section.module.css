@@ -1,0 +1,16 @@
+.section {
+  padding: 50px 10px 10px 10px;
+}
+
+.left-section {
+  flex: 1;
+  align-content: center;
+}
+
+.col {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  gap: 50px;
+  margin-bottom: 50px;
+}
