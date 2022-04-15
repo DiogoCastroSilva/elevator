@@ -1,0 +1,24 @@
+.right-section {
+  display: flex;
+  justify-content: center;
+  flex: 1.5;
+}
+
+.building {
+  display: flex;
+  border: 1px solid black;
+  flex: 1;
+  margin: 10px;
+}
+
+.building-section {
+  flex: 1;
+}
+
+.b-right {
+  border-right: 1px solid black;
+}
+
+.b-left {
+  border-left: 1px solid black;
+}

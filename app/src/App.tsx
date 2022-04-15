@@ -1,10 +1,8 @@
-import React from 'react';
+import Root from './views/root';
 
 function App() {
   return (
-    <div>
-     App
-    </div>
+   <Root />
   );
 }
 
