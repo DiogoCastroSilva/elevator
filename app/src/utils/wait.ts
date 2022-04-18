@@ -1,12 +1,5 @@
-function wait<T extends Function>(callback: T, ms: number) {
-  if (ms === void 0) {
-    ms = 0;
-  }
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(callback());
-    }, ms);
-  });
+function wait(ms: number = 0): Promise<undefined> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 export default wait;

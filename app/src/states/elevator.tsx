@@ -1,8 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
-
 import wait from '../utils/wait';
 
-const FLOOR_SIZE = 14.1;
+const FLOOR_SIZE = 15;
 const MIN_FLOOR = 0;
 
 interface IElevatorProvider {
@@ -26,18 +25,18 @@ const ElevatorProvider = ({ numOfFloors, children }: IElevatorProvider) => {
   const [queus, setQueus] = useState<number[]>([]);
 
   const isIddle = () => {
-    return !isMoving && queus.length === 0;
+    return !isMoving;
   };
 
   const goUp = () => {
     if (currentFloor < numOfFloors - 1) {
-      setCurrentFloor(currentFloor + 1);
+      setCurrentFloor((prev) => prev + 1);
     }
   };
 
   const goDown = () => {
     if (currentFloor > MIN_FLOOR) {
-      setCurrentFloor(currentFloor - 1);
+      setCurrentFloor((prev) => prev - 1);
     }
   };
 
@@ -47,35 +46,46 @@ const ElevatorProvider = ({ numOfFloors, children }: IElevatorProvider) => {
     }
   };
 
-  const moveElevator = () => {
-    setTimeout(() => {
-      setIsMoving(true);
+  const moveElevator = async () => {
+    const queu = queus[0];
+    const isSameFloor = queu === currentFloor;
 
-      const queu = queus[0];
-      const isSameFloor = queu === currentFloor;
+    setQueus((prev) => {
+      let localQues = [...prev];
 
       if (isSameFloor) {
-        queus.pop();
-        setIsMoving(false);
-        return false;
+        localQues.shift();
       }
 
-      if (currentFloor > queu) {
-        goDown();
-      } else {
-        goUp();
+      if (queus.includes(currentFloor)) {
+        localQues = localQues.filter((q) => q !== currentFloor);
       }
 
-      setIsMoving(false);
-      moveElevator();
-    }, 5000);
+      return localQues;
+    });
+
+    if (isSameFloor) {
+      return;
+    }
+
+    setIsMoving(true);
+
+    await wait(5000);
+
+    if (currentFloor > queu) {
+      goDown();
+    } else {
+      goUp();
+    }
+
+    setIsMoving(false);
   };
 
   useEffect(() => {
-    if (isIddle()) {
+    if (isIddle() && queus.length > 0) {
       moveElevator();
     }
-  }, [queus]);
+  }, [currentFloor, queus]);
 
   return (
     <ElevatorContext.Provider
