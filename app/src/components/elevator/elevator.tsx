@@ -1,8 +1,12 @@
 import styles from './elevator.module.css';
 
-function Elevator() {
+interface IELevator {
+  position: number | string;
+}
+
+function Elevator({ position = 0 }: IELevator) {
   return (
-    <div className={styles.elevator}>
+    <div className={styles.elevator} style={{ top: position }}>
       <div className={styles.top}>
         <div className={styles.light} />
       </div>
