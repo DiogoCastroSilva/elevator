@@ -35,7 +35,7 @@ they wish to go to.
 - [ ] User can expect that clicking the up and down buttons on any floor
       to request the elevator will be queued and serviced in the sequence they were
       clicked.
-- [ ] User can see the elevator move up and down the shaft to the floor it
+- [x] User can see the elevator move up and down the shaft to the floor it
       was called to.
 - [x] User can click the elevator control panel to select the floor it
       should travel to.

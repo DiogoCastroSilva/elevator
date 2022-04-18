@@ -70,7 +70,7 @@ const ElevatorProvider = ({ numOfFloors, children }: IElevatorProvider) => {
 
     setIsMoving(true);
 
-    await wait(5000);
+    await wait(500);
 
     if (currentFloor > queu) {
       goDown();
